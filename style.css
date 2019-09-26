@@ -3,4 +3,76 @@
   padding: 0;
 }
 
+.container {
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.bxbb {
+  box-sizing: border-box;
+}
+
+.button {
+  width: 120px;
+  height: 30px;
+  background-color: #898bff;
+  border-radius: 15px;
+  text-align: center;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+
+.menu {
+  width: 1400px;
+  height: 100px;
+  background-color: #bcb6bb;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+}
+.menu_button {
+  transition: background-color 1s;
+}
+.menu_button:hover {
+  background-color: #ffe189;
+  cursor: pointer;
+}
+
+.catalog {
+  width: 1200px;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.catalog__item {
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  padding: 10px;
+  outline: 2px solid black;
+}
+.catalog__item p {
+  display: contents;
+}
+.catalog__item h3 {
+  margin-bottom: 15px;
+}
+.catalog__item img {
+  width: 150px;
+  height: 150px;
+}
+.catalog_button {
+  margin-top: -4px;
+  float: right;
+  transition: background-color 1s;
+}
+.catalog_button:hover {
+  background-color: #ff7170;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=style.css.map */

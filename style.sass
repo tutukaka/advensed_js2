@@ -1,3 +1,61 @@
 *
   margin: 0
   padding: 0
+
+.container
+  margin: 0 auto
+
+.flex
+  display: flex
+
+.bxbb
+  box-sizing: border-box
+.button
+  width: 120px
+  height: 30px
+  background-color: #898bff
+  border-radius: 15px
+  text-align: center
+  padding: 4px 0
+  box-sizing: border-box
+
+.menu
+  width: 1400px
+  height: 100px
+  background-color: #bcb6bb
+  justify-content: flex-end
+  align-items: center
+  padding: 20px
+  &_button
+    transition: background-color 1s
+    &:hover
+      background-color: #ffe189
+      cursor: pointer
+
+
+.catalog
+  width: 1200px
+  padding: 20px
+  justify-content: space-between
+  align-items: center
+  flex-wrap: wrap
+  &__item
+    width: 250px
+    height: 250px
+    text-align: center
+    padding: 10px
+    outline: 2px solid black
+    & p
+      display: contents
+    & h3
+      margin-bottom: 15px
+    & img
+      width: 150px
+      height: 150px
+  &_button
+    margin-top: -4px
+    float: right
+    transition: background-color 1s
+    &:hover
+      background-color: #ff7170
+      cursor: pointer
