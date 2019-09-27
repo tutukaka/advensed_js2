@@ -1,6 +1,6 @@
 "use strict";
 
-class ItemsList {
+class GoodsList {
     constructor() {
         this.items = [];
     }
@@ -14,8 +14,18 @@ class ItemsList {
 ]}
 
     render() {
-        return this.items.map((item) => new Item(item.title, item.price, item.img).render()).join('');
+        return this.items.map((item) => new Item(item.title, item.price, item.img)
+            .render()).join('');
     }
+
+    findPriceGoods(){
+        let summ = null;
+        this.items.forEach((item) => {
+            summ += item.price
+        });
+        return summ;
+    }
+
 }
 
 class Item {
@@ -26,12 +36,18 @@ class Item {
     }
 
     render() {
-        return `<div class="catalog__item bxbb"> <img src="image/${this.img}" alt="photo"><h3>${this.title}</h3>
-<p>цена: ${this.price}р</p><div class="button catalog_button">добавить</div></div>`
+        return `<div class="catalog__item bxbb"> <img src="image/${this.img}" 
+            alt="photo"><h3>${this.title}</h3><p>цена: ${this.price}р</p>
+            <div class="button catalog_button">добавить</div></div>`
     }
 }
 
-const items = new ItemsList();
+const items = new GoodsList();
 items.fetchItems();
 
-document.querySelector('.catalog').innerHTML = items.render();
+let catalog = document.querySelector('.catalog');
+catalog.insertAdjacentHTML('afterend', `<div class="output container"><p>Стоимость всех товаров ${items.findPriceGoods()}</p></div>`);
+
+
+catalog.innerHTML = items.render();
+
