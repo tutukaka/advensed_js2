@@ -46,7 +46,8 @@ const items = new GoodsList();
 items.fetchItems();
 
 let catalog = document.querySelector('.catalog');
-catalog.insertAdjacentHTML('afterend', `<div class="output container"><p>Стоимость всех товаров ${items.findPriceGoods()}</p></div>`);
+catalog.insertAdjacentHTML('afterend', `<div class="output container">
+    <p>Стоимость всех товаров ${items.findPriceGoods()}</p></div>`);
 
 
 catalog.innerHTML = items.render();
