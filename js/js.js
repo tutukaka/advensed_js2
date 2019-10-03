@@ -125,19 +125,3 @@ function test2(){
         }
     }
 }
-
-
-// for (let i = 0; i < this.basket.length; i++) {
-//     if (this.basket[i].id === art){
-//         this.basket[i].quantity++;
-//         console.log(this.basket[i].quantity);
-//         if (!this._output) {
-//             this._output = document.createElement("div");
-//             this._output.className = 'output container';
-//             catalog.innerHTML += this._output;
-//             // catalog.insertAdjacentHTML('afterend', `${this._output}`);
-//         } else {
-//             document.querySelector('.output').innerHTML = `<p>Стоимость всех товаров ${basket.findPriceGoods()}</p>`;
-//         }
-//     }
-// }
