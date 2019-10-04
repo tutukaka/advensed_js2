@@ -86,9 +86,8 @@ class BasketList  {
 
     addItem(content) {
         // this.basket.push(content)
-        return sendRequest(`/goods/${content}`)
-            .then((basket) => {
-            this.basket = basket;
+        return sendRequest(`/goods/${content}`).then((basket) => {
+            this.basket.push(basket);
         });
     }
 
