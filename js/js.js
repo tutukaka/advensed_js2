@@ -72,7 +72,7 @@ class BasketList  {
     checkItems(art) {
         // проверяет есть ли в корзине этот товар
         for (let i = 0; i < this.basket.length; i++) {
-            if (this.basket[i].id === art.id) {
+            if (this.basket[i].id === art) {
                 //если есть добавляет количество товара
                 this.basket[i].quantity++;
                 return this.render();
@@ -84,8 +84,12 @@ class BasketList  {
         return this.render();
     }
 
-    addItem(content){
-        return this.basket.push(content);
+    addItem(content) {
+        // this.basket.push(content)
+        return sendRequest(`/goods/${content}`)
+            .then((basket) => {
+            this.basket = basket;
+        });
     }
 
     render() {
@@ -98,7 +102,7 @@ class BasketList  {
             this._output = document.createElement("div");
             this._output.className = 'output container';
             this._output.innerHTML = `<p>Стоимость всех товаров ${basket.findPriceGoods()}</p>`;
-            console.log(this._output);
+            // console.log(this._output);
             return this._output;
             // catalog.insertAdjacentHTML('afterend', `${this._output}`);
         } else {
@@ -133,10 +137,10 @@ const basketOut = document.querySelector('#basket');
 function test2(){
     for (const key of items.items) {
         if (+this.parentNode.dataset.art === key.id) {
-            basketOut.innerHTML = basket.checkItems(key);
+            basketOut.innerHTML = basket.checkItems(key.id);
             basket.outResult();
             basketOut.after(basket._output);
-            console.log(basket._output)
+            // console.log(basket._output)
         }
     }
 }
