@@ -33,18 +33,19 @@
       cursor: pointer
 
 
-.catalog
+.catalog, .basket
   width: 1200px
   padding: 20px
-  justify-content: space-between
+  justify-content: start
   align-items: center
-  flex-wrap: wrap
   &__item
     width: 250px
     height: 250px
     text-align: center
-    padding: 10px
     outline: 2px solid black
+    padding: 10px 10px 10px
+    margin: 0 0 20px 30px
+
     & p
       display: contents
     & h3
@@ -59,3 +60,20 @@
     &:hover
       background-color: #ff7170
       cursor: pointer
+
+.basket
+  border: 2px solid darkblue
+  margin-top: 40px
+  &_button
+    width: 32px
+    margin: -4px 0
+
+.output
+  width: 1200px
+  height: 100px
+  background-color: #898989
+  padding: 40px 20px 20px
+
+.quantity_out
+  width: 30px
+  float: right
