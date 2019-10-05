@@ -81,7 +81,7 @@
 }
 .basket_button {
   width: 32px;
-  margin: -4px 10px;
+  margin: -4px 0;
 }
 
 .output {
@@ -89,6 +89,11 @@
   height: 100px;
   background-color: #898989;
   padding: 40px 20px 20px;
+}
+
+.quantity_out {
+  width: 30px;
+  float: right;
 }
 
 /*# sourceMappingURL=style.css.map */

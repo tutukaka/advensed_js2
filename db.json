@@ -1,0 +1,8 @@
+{
+  "goods": [
+    { "id": 21566, "title": "Компьютерная мышь", "price": 400, "img": "mouse.jpg", "quantity": 1 },
+    { "id": 22563, "title": "Жесткий диск SSD 480Gb", "price": 10000, "img": "ssd.jpg", "quantity": 1 },
+    { "id": 23766, "title": "Материнская плата", "price": 4000, "img": "motherboard.jpg", "quantity": 1 },
+    { "id": 24526, "title": "Видео-карта", "price": 15000, "img": "video.jpg", "quantity": 1 }
+  ]
+}

@@ -1,17 +1,35 @@
 "use strict";
 
+function sendRequest(url) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status !== 200) {
+                    reject();
+                }
+                const users = JSON.parse(xhr.responseText);
+
+                resolve(users);
+            }
+        };
+        xhr.send();
+    });
+}
+
 class ItemsList  {
     constructor() {
         this.items = [];
     }
 
     fetchItems() {
-        this.items = [
-    { id: 21566, title: 'Компьютерная мышь', price: 400, img: 'mouse.jpg', quantity: 1 },
-    { id: 22563, title: 'Жесткий диск SSD 480Gb', price: 10000, img: 'ssd.jpg', quantity: 1 },
-    { id: 23766, title: 'Материнская плата', price: 4000, img: 'motherboard.jpg', quantity: 1 },
-    { id: 24526, title: 'Видео-карта', price: 15000, img: 'video.jpg', quantity: 1 },
-]}
+        return sendRequest('/goods')
+            .then((items) => {
+                this.items = items;
+            });
+    }
 
     render() {
         return this.items.map((item) => new Item(item.title, item.price, item.img, item.id)
@@ -35,12 +53,14 @@ class Item {
 }
 
 const items = new ItemsList ();
-items.fetchItems();
-
 const catalog = document.querySelector('.catalog');
-catalog.innerHTML = items.render();
-
-
+items.fetchItems().then(() => {
+    catalog.innerHTML = items.render();
+    const test = document.getElementsByClassName('catalog_button');
+    for (let i =0; i<test.length; i++){
+        test[i].addEventListener('click', test2);
+    }
+});
 
 class BasketList  {
     constructor() {
@@ -52,7 +72,7 @@ class BasketList  {
     checkItems(art) {
         // проверяет есть ли в корзине этот товар
         for (let i = 0; i < this.basket.length; i++) {
-            if (this.basket[i].id === art.id) {
+            if (this.basket[i].id === art) {
                 //если есть добавляет количество товара
                 this.basket[i].quantity++;
                 return this.render();
@@ -64,8 +84,11 @@ class BasketList  {
         return this.render();
     }
 
-    addItem(content){
-        return this.basket.push(content);
+    addItem(content) {
+        // this.basket.push(content)
+        return sendRequest(`/goods/${content}`).then((basket) => {
+            this.basket.push(basket);
+        });
     }
 
     render() {
@@ -78,7 +101,7 @@ class BasketList  {
             this._output = document.createElement("div");
             this._output.className = 'output container';
             this._output.innerHTML = `<p>Стоимость всех товаров ${basket.findPriceGoods()}</p>`;
-            console.log(this._output);
+            // console.log(this._output);
             return this._output;
             // catalog.insertAdjacentHTML('afterend', `${this._output}`);
         } else {
@@ -103,25 +126,20 @@ class ItemBasket extends  Item{
     render() {
         return `<div data-art="${this.id}" class="basket__item bxbb"> <img src="image/${this.img}" 
             alt="photo"><h3>${this.title}</h3><p>цена: ${this.price}р</p>
-            <div class="button basket_button">+</div><div class="button basket_button">-</div></div>` ;
+            <div class="button basket_button">+</div><div class="quantity_out">${this.quantity}</div><div class="button basket_button">-</div></div>` ;
 
     }
 }
 const basket = new BasketList();
 
-const test = document.getElementsByClassName('catalog_button');
-for (let i =0; i<test.length; i++){
-    test[i].addEventListener('click', test2);
-}
-
 const basketOut = document.querySelector('#basket');
 function test2(){
     for (const key of items.items) {
         if (+this.parentNode.dataset.art === key.id) {
-            basketOut.innerHTML = basket.checkItems(key);
+            basketOut.innerHTML = basket.checkItems(key.id);
             basket.outResult();
             basketOut.after(basket._output);
-            console.log(basket._output)
+            // console.log(basket._output)
         }
     }
 }
