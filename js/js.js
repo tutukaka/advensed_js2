@@ -3,17 +3,13 @@
 class ItemsList  {
     constructor() {
         this.items = [];
-        // this.loaded = true;
-        // this.filteredItems = items;
-    }
+     }
 
     fetchItems() {
         return fetch('/goods')
             .then(response => response.json())
             .then((items) => {
                 this.items = items;
-                // this.loaded = true;
-                // this.filteredItems = items;
             })
     }
 
@@ -156,9 +152,7 @@ class BasketList  {
             this._output = document.createElement("div");
             this._output.className = 'output container';
             this._output.innerHTML = `<p>Стоимость всех товаров <span id="total-price">${basket.findPriceGoods()}</span></p>`;
-            // console.log(this._output);
             return this._output;
-            // catalog.insertAdjacentHTML('afterend', `${this._output}`);
         } else {
             document.querySelector('#total-price').innerHTML = `${basket.findPriceGoods()}`;
         }
@@ -216,9 +210,9 @@ document.getElementById('basket').addEventListener('click', (event) => {
                 const subtotal = basket.addQuantityDiminish(key.id);
                 if (subtotal !== false) {
                     basketOut.innerHTML = subtotal;
-                    basket.outResult();
-                    basketOut.after(basket._output);
                 }
+                basket.outResult();
+                basketOut.after(basket._output);
             }
         }
     }
